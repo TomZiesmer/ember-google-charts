@@ -6,7 +6,7 @@ export default function renderMaterialChart({ charts, visualization }, data, opt
   return new RSVP.Promise((resolve, reject) => {
     const type = Ember.String.capitalize(this.get('type'));
     const chart = new charts[type](this.get('element'));
-    const dataTable = Array.isArray(data) ? visualization.arrayToDataTable(data) : data;
+    const dataTable = Array.isArray(data) ? visualization.arrayToDataTable(data) : new google.visualization.DataTable(data);
 
     visualization.events.addListener(chart, 'error', reject);
 
