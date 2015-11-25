@@ -7,7 +7,7 @@ export default function renderClassicChart({ charts, visualization }, data, opti
     const type = this.get('type');
     const capitalizedType = Ember.String.capitalize(this.get('type'));
     const chart = new visualization[`${capitalizedType}Chart`](this.get('element'));
-    const dataTable = visualization.arrayToDataTable(data);
+    const dataTable = Array.isArray(data) ? visualization.arrayToDataTable(data) : data;
 
     visualization.events.addListener(chart, 'error', reject);
 
