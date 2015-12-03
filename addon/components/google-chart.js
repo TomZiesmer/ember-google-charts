@@ -77,7 +77,8 @@ export default Ember.Component.extend({
 
     assert('You have not passed any data to the chart', data);
 
-    this.renderChart(window.google, data, options).then((chart) => {
+    this.renderChart(window.google, data, options, this.get('select') ? (ev, chart) => this.sendAction('select', ev, chart) : undefined)
+    .then((chart) => {
       this.set('chart', chart);
       this.sendAction('chartDidRender', chart);
     });
