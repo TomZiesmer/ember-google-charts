@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { assert, computed, on, run } = Ember;
+const { assert, computed, observer, on, run } = Ember;
 
 export default Ember.Component.extend({
 
@@ -51,6 +51,10 @@ export default Ember.Component.extend({
     } else {
       run.later(this, this.loadApi, 200);
     }
+  }),
+
+  updateChart: observer('data', function() {
+    this._renderChart();
   }),
 
   renderChart() {
